@@ -1,7 +1,8 @@
 #define _WINSOCK_DEPRECATED_NO_WARNINGS //头文件升级原因导致原有函数报错，加上这句忽略报错
 #include <stdio.h>
 #include <winsock2.h>//windows 下的socket2.2
-
+#include<iostream>
+#include<string>
 #pragma comment(lib,"ws2_32.lib")  //使用socket必须加载库
 
 int main(int argc, char* argv[])
@@ -67,7 +68,14 @@ int main(int argc, char* argv[])
 
 		//发送数据  
 		const char* sendData = "你好，TCP客户端！\n";
+		std::string temp = "这里是服务端";
+		std::cin >> temp;
+		sendData = temp.c_str();
 		send(sClient, sendData, strlen(sendData), 0);
+		
+		
+		//sendData = temp.c_str();
+		//send(sClient, sendData, strlen(sendData), 0);
 		closesocket(sClient);
 	}
 
