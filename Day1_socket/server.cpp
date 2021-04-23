@@ -20,15 +20,15 @@ int main(int argc, char* argv[])
 	SOCKET slisten = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (slisten == INVALID_SOCKET)
 	{
-		printf("socket error !");
+		printf("server socket error !");
 		return 0;
 	}
 
 	//绑定IP和端口  
 	sockaddr_in sin;
-	sin.sin_family = AF_INET;
-	sin.sin_port = htons(12345);
-	sin.sin_addr.S_un.S_addr = INADDR_ANY;
+	sin.sin_family = AF_INET;//协议族
+	sin.sin_port = htons(12345);//端口
+	sin.sin_addr.S_un.S_addr = INADDR_ANY;//任意地址
 	if (bind(slisten, (LPSOCKADDR)&sin, sizeof(sin)) == SOCKET_ERROR)
 	{
 		printf("bind error !");

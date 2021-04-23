@@ -25,15 +25,22 @@ int main()
 		sockaddr_in serAddr;
 		serAddr.sin_family = AF_INET;
 		serAddr.sin_port = htons(12345);
-		serAddr.sin_addr.S_un.S_addr = inet_addr("192.168.43.210");
+		serAddr.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
 		//127.0.0.1 本地回环地址
-		if (connect(sclient, (sockaddr*)&serAddr, sizeof(serAddr)) == SOCKET_ERROR)
-		{  //连接失败 
-			printf("connect error !");
-			closesocket(sclient);
-			return 0;
+		bool falg = true;
+		while (falg)
+		{
+			if (connect(sclient, (sockaddr*)&serAddr, sizeof(serAddr)) == SOCKET_ERROR)
+			{  //连接失败 
+				printf("connect error !\n");
+				
+				
+			}
+			else
+			{
+				falg = false;
+			}
 		}
-
 		string data;
 		cin >> data;
 		const char* sendData;
